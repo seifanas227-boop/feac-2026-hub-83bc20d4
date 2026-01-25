@@ -54,17 +54,17 @@ export function VisionSection() {
             </h2>
             
             <p className="text-lg text-primary-foreground/80 mb-8 font-inter leading-relaxed">
-              Le Forum Économique Afrique Centrale s'impose comme le grand carrefour stratégique de la sous-région, dédié à l'intégration économique, à la compétitivité des entreprises locales et à la conquête du marché continental dans le cadre de la ZLECAF.
+              Le Forum Économique Afrique Centrale s'impose comme le grand carrefour stratégique de la sous-région. Il sert de point de rencontre pour l'intégration économique, la compétitivité des entreprises locales et la conquête du marché continental dans le cadre de la ZLECAF.
             </p>
 
             <div className="flex flex-wrap gap-4">
               <div className="flex items-center gap-3 px-5 py-3 rounded-xl bg-primary-foreground/10">
                 <span className="w-3 h-3 rounded-full bg-gold" />
-                <span className="text-primary-foreground font-inter">6 Pays membres</span>
+                <span className="text-primary-foreground font-inter">Zone CEMAC/CEEAC</span>
               </div>
               <div className="flex items-center gap-3 px-5 py-3 rounded-xl bg-primary-foreground/10">
                 <span className="w-3 h-3 rounded-full bg-gold" />
-                <span className="text-primary-foreground font-inter">500 Mds $ PIB</span>
+                <span className="text-primary-foreground font-inter">Marché de 1,3 Mrd consommateurs</span>
               </div>
             </div>
           </motion.div>

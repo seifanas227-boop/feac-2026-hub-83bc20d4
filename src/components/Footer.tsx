@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { Phone, Mail, MapPin, Facebook, Twitter, Linkedin, Instagram, ArrowUp } from "lucide-react";
-
+import feacLogo from "@/assets/feac-logo.jpg";
 const quickLinks = [
   { label: "Accueil", href: "#hero" },
   { label: "Le Forum", href: "#vision" },
@@ -42,9 +42,11 @@ export function Footer() {
             transition={{ duration: 0.6 }}
           >
             <div className="flex items-center gap-3 mb-6">
-              <div className="w-14 h-14 rounded-full bg-gold-gradient flex items-center justify-center">
-                <span className="font-montserrat font-black text-navy text-xl">F</span>
-              </div>
+              <img
+                src={feacLogo}
+                alt="Forum Économique Afrique Centrale"
+                className="w-14 h-14 rounded-full object-cover"
+              />
               <div>
                 <p className="font-montserrat font-bold text-primary-foreground text-sm leading-tight">
                   FORUM ÉCONOMIQUE
@@ -152,8 +154,11 @@ export function Footer() {
               <p className="text-xs text-primary-foreground/60 font-inter mb-3">
                 Central Africa Business Council
               </p>
-              <p className="text-sm text-primary-foreground/70 font-inter">
-                Organisation à but non lucratif pour la promotion de la compétitivité des PMEs en Afrique Centrale.
+              <p className="text-sm text-primary-foreground/70 font-inter mb-3">
+                Organisation à but non lucratif promouvant la compétitivité des PMEs. Services: prospection de marchés, identification d'opportunités, et gestion de projets.
+              </p>
+              <p className="text-xs text-gold font-montserrat font-semibold italic">
+                "Ensemble, réinventons la PME en Afrique centrale"
               </p>
             </div>
           </motion.div>
