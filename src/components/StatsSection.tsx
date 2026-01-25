@@ -1,12 +1,11 @@
-import { motion } from "framer-motion";
-import { useInView } from "framer-motion";
-import { useRef } from "react";
+import { motion, useInView } from "framer-motion";
+import { useRef, useState, useEffect } from "react";
 import { Users, TrendingUp, DollarSign, Globe } from "lucide-react";
 
 const stats = [
   {
     icon: Users,
-    value: "200",
+    value: 200,
     suffix: "M",
     label: "Habitants",
     description: "Population de l'Afrique centrale",
@@ -14,7 +13,7 @@ const stats = [
   },
   {
     icon: TrendingUp,
-    value: "5",
+    value: 5,
     suffix: "%",
     label: "Croissance",
     description: "Moyenne sur les 5 dernières années",
@@ -22,7 +21,7 @@ const stats = [
   },
   {
     icon: DollarSign,
-    value: "523",
+    value: 523,
     suffix: "Mds $",
     label: "PIB (PPA)",
     description: "Produit Intérieur Brut régional",
@@ -30,11 +29,12 @@ const stats = [
   },
   {
     icon: Globe,
-    value: "6,67",
+    value: 6.67,
     suffix: "M km²",
     label: "Superficie",
     description: "Un territoire vaste et riche",
     color: "gold",
+    isDecimal: true,
   },
 ];
 
@@ -57,6 +57,54 @@ const itemVariants = {
     transition: { duration: 0.5, ease: "easeOut" as const },
   },
 };
+
+// Animated counter hook
+function useAnimatedCounter(target: number, isInView: boolean, duration = 2000, isDecimal = false): string {
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    if (!isInView) return;
+
+    let startTime: number;
+    let animationFrame: number;
+
+    const animate = (currentTime: number) => {
+      if (!startTime) startTime = currentTime;
+      const elapsed = currentTime - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      
+      // Easing function: easeOutExpo
+      const easeOutExpo = 1 - Math.pow(2, -10 * progress);
+      const currentValue = target * easeOutExpo;
+      
+      setCount(currentValue);
+
+      if (progress < 1) {
+        animationFrame = requestAnimationFrame(animate);
+      } else {
+        setCount(target);
+      }
+    };
+
+    animationFrame = requestAnimationFrame(animate);
+
+    return () => {
+      if (animationFrame) {
+        cancelAnimationFrame(animationFrame);
+      }
+    };
+  }, [isInView, target, duration]);
+
+  if (isDecimal) {
+    return count.toFixed(2).replace(".", ",");
+  }
+  return Math.floor(count).toString();
+}
+
+function AnimatedStatValue({ target, isInView, isDecimal = false }: { target: number; isInView: boolean; isDecimal?: boolean }) {
+  const displayValue = useAnimatedCounter(target, isInView, 2000, isDecimal);
+  return <>{displayValue}</>;
+}
 
 export function StatsSection() {
   const ref = useRef(null);
@@ -122,7 +170,11 @@ export function StatsSection() {
                   index === 0 ? "text-navy" :
                   index === 3 ? "text-gradient-gold" : "text-primary-foreground"
                 }`}>
-                  {stat.value}
+                  <AnimatedStatValue 
+                    target={stat.value} 
+                    isInView={isInView} 
+                    isDecimal={stat.isDecimal} 
+                  />
                 </span>
                 <span className={`text-xl font-montserrat font-bold ml-1 ${
                   index === 0 ? "text-navy/80" :
