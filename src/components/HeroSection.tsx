@@ -1,8 +1,10 @@
 import { motion } from "framer-motion";
 import { Calendar, MapPin, Download, UserPlus, ArrowDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { CountdownTimer } from "@/components/CountdownTimer";
 import heroBg from "@/assets/hero-bg.jpg";
 import feacLogo from "@/assets/feac-logo.jpg";
+
 export function HeroSection() {
   return (
     <section
@@ -96,11 +98,24 @@ export function HeroSection() {
           </div>
         </motion.div>
 
+        {/* Countdown Timer */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.45 }}
+          className="mb-8"
+        >
+          <p className="text-sm text-primary-foreground/60 font-inter mb-3 uppercase tracking-wider">
+            L'événement commence dans
+          </p>
+          <CountdownTimer />
+        </motion.div>
+
         {/* Organizer Badge */}
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.45 }}
+          transition={{ duration: 0.6, delay: 0.5 }}
           className="text-sm text-primary-foreground/60 font-inter mb-6"
         >
           Organisé par le <span className="text-gold font-semibold">Central Africa Business Council (CABC)</span>
