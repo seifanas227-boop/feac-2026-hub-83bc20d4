@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, Download, UserPlus } from "lucide-react";
 import { Button } from "@/components/ui/button";
-
+import feacLogo from "@/assets/feac-logo.jpg";
 const navItems = [
   { label: "Accueil", href: "#hero" },
   { label: "Le Forum", href: "#vision" },
@@ -39,9 +39,11 @@ export function Navbar() {
         <div className="flex items-center justify-between">
           {/* Logo */}
           <a href="#hero" className="flex items-center gap-3">
-            <div className="w-12 h-12 rounded-full bg-gold-gradient flex items-center justify-center">
-              <span className="font-montserrat font-black text-navy text-lg">F</span>
-            </div>
+            <img
+              src={feacLogo}
+              alt="Forum Économique Afrique Centrale"
+              className="w-12 h-12 rounded-full object-cover"
+            />
             <div className="hidden sm:block">
               <p className="font-montserrat font-bold text-primary-foreground text-sm leading-tight">
                 FORUM ÉCONOMIQUE

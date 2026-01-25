@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { Calendar, MapPin, Download, UserPlus, ArrowDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import heroBg from "@/assets/hero-bg.jpg";
-
+import feacLogo from "@/assets/feac-logo.jpg";
 export function HeroSection() {
   return (
     <section
@@ -25,15 +25,29 @@ export function HeroSection() {
 
       {/* Content */}
       <div className="relative z-10 container-custom text-center pt-24 pb-16">
+        {/* Logo */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.6 }}
+          className="flex justify-center mb-6"
+        >
+          <img
+            src={feacLogo}
+            alt="FEAC Logo"
+            className="w-24 h-24 md:w-32 md:h-32 rounded-full border-4 border-gold/30"
+          />
+        </motion.div>
+
         {/* Edition Badge */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-gold-gradient mb-8"
+          transition={{ duration: 0.6, delay: 0.1 }}
+          className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-gold-gradient mb-6"
         >
           <span className="font-montserrat font-bold text-navy text-sm">
-            4ème Édition
+            4ème Édition | Central Africa Business Forum
           </span>
         </motion.div>
 
@@ -41,8 +55,8 @@ export function HeroSection() {
         <motion.h1
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.1 }}
-          className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-montserrat font-black text-primary-foreground mb-6 leading-tight"
+          transition={{ duration: 0.6, delay: 0.2 }}
+          className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-montserrat font-black text-primary-foreground mb-4 leading-tight"
         >
           Afrique Centrale,
           <br />
@@ -55,8 +69,8 @@ export function HeroSection() {
         <motion.p
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="text-lg md:text-xl text-primary-foreground/80 max-w-2xl mx-auto mb-8 font-inter"
+          transition={{ duration: 0.6, delay: 0.3 }}
+          className="text-lg md:text-xl text-primary-foreground/80 max-w-3xl mx-auto mb-8 font-inter"
         >
           Opportunités et défis pour les entreprises
         </motion.p>
@@ -65,8 +79,8 @@ export function HeroSection() {
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.3 }}
-          className="flex flex-wrap justify-center gap-6 mb-12"
+          transition={{ duration: 0.6, delay: 0.4 }}
+          className="flex flex-wrap justify-center gap-4 mb-12"
         >
           <div className="flex items-center gap-2 px-5 py-3 rounded-xl bg-primary-foreground/10 backdrop-blur-sm border border-primary-foreground/20">
             <Calendar className="w-5 h-5 text-gold" />
@@ -82,11 +96,21 @@ export function HeroSection() {
           </div>
         </motion.div>
 
+        {/* Organizer Badge */}
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.45 }}
+          className="text-sm text-primary-foreground/60 font-inter mb-6"
+        >
+          Organisé par le <span className="text-gold font-semibold">Central Africa Business Council (CABC)</span>
+        </motion.p>
+
         {/* CTA Buttons */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.4 }}
+          transition={{ duration: 0.6, delay: 0.5 }}
           className="flex flex-wrap justify-center gap-4"
         >
           <Button className="btn-gold text-lg py-6 px-10">

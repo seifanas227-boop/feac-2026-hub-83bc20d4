@@ -84,8 +84,8 @@ export function StatsSection() {
             <br />
             <span className="text-gradient-gold">des Entreprises</span>
           </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto font-inter">
-            La ZLECAF ouvre une ère nouvelle pour les économies africaines avec un marché continental de 1,3 milliard de consommateurs.
+          <p className="text-lg text-muted-foreground max-w-3xl mx-auto font-inter">
+            La ZLECAF ouvre une ère nouvelle avec un accès à un marché continental de <strong>1,3 milliard de consommateurs</strong> et un <strong>PIB de 3 000 milliards de dollars</strong>.
           </p>
         </motion.div>
 
