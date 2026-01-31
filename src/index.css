@@ -292,14 +292,14 @@
 
   .btn-outline-light {
     @apply inline-flex items-center justify-center font-montserrat font-semibold px-8 py-4 rounded-xl border-2 transition-all duration-300;
-    border-color: hsl(0 0% 100% / 0.5);
-    color: white;
-    background: transparent;
+    border-color: hsl(0 0% 100% / 0.5) !important;
+    color: hsl(0 0% 100%) !important;
+    background: transparent !important;
   }
 
   .btn-outline-light:hover {
-    background: hsl(0 0% 100% / 0.1);
-    border-color: white;
+    background: hsl(0 0% 100% / 0.1) !important;
+    border-color: hsl(0 0% 100%) !important;
   }
 }
 
