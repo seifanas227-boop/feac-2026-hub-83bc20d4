@@ -4,6 +4,7 @@ import { Calendar, MapPin, Download, UserPlus, ArrowDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { CountdownTimer } from "@/components/CountdownTimer";
 import { RegistrationModal } from "@/components/RegistrationModal";
+import heroVideo from "@/assets/hero-video.mp4";
 import heroBg from "@/assets/hero-bg.jpg";
 import feacLogo from "@/assets/feac-logo.jpg";
 
@@ -16,13 +17,24 @@ export function HeroSection() {
         id="hero"
         className="relative min-h-screen flex items-center justify-center overflow-hidden"
       >
-        {/* Background Image */}
+        {/* Video Background */}
         <div className="absolute inset-0">
-          <img
-            src={heroBg}
-            alt="Port africain au coucher du soleil"
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            poster={heroBg}
             className="w-full h-full object-cover"
-          />
+          >
+            <source src={heroVideo} type="video/mp4" />
+            {/* Fallback to image if video doesn't load */}
+            <img
+              src={heroBg}
+              alt="Port africain au coucher du soleil"
+              className="w-full h-full object-cover"
+            />
+          </video>
           <div className="absolute inset-0 bg-hero-gradient" />
         </div>
 
