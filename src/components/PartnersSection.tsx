@@ -52,7 +52,7 @@ const whyParticipate = [
 
 export function PartnersSection() {
   return (
-    <section id="partners" className="section-padding bg-forest-gradient relative overflow-hidden">
+    <section id="partners" className="py-24 md:py-32 bg-forest-gradient relative overflow-hidden">
       {/* Decorative Elements */}
       <div className="absolute top-0 right-0 w-1/3 h-full bg-gradient-to-l from-gold/10 to-transparent" />
 

@@ -54,7 +54,7 @@ const objectives = [
 
 export function ObjectivesSection() {
   return (
-    <section className="section-padding bg-navy-gradient relative overflow-hidden">
+    <section className="py-24 md:py-32 bg-navy-gradient relative overflow-hidden">
       {/* Decorative Grid */}
       <div className="absolute inset-0 opacity-5">
         <div className="absolute inset-0" style={{

@@ -6,6 +6,7 @@ import { SectorsSection } from "@/components/SectorsSection";
 import { ObjectivesSection } from "@/components/ObjectivesSection";
 import { EventHighlightsSection } from "@/components/EventHighlightsSection";
 import { SpeakersSection } from "@/components/SpeakersSection";
+import { GallerySection } from "@/components/GallerySection";
 import { PartnersSection } from "@/components/PartnersSection";
 import { Footer } from "@/components/Footer";
 import { ScrollProgressBar } from "@/components/ScrollProgressBar";
@@ -28,6 +29,7 @@ const Index = () => {
       <ObjectivesSection />
       <EventHighlightsSection />
       <SpeakersSection />
+      <GallerySection />
       <PartnersSection />
       <Footer />
       <FloatingCTA />

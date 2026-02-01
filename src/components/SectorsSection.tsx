@@ -1,6 +1,12 @@
 import { motion } from "framer-motion";
 import { Wheat, Zap, Ship, Laptop, ChevronRight } from "lucide-react";
 
+// Sector images
+import sectorAgriculture from "@/assets/sector-agriculture.jpg";
+import sectorEnergy from "@/assets/sector-energy.jpg";
+import sectorTransport from "@/assets/sector-transport.jpg";
+import sectorDigital from "@/assets/sector-digital.jpg";
+
 const sectors = [
   {
     icon: Wheat,
@@ -10,7 +16,8 @@ const sectors = [
       "Focus sur AgriTech et valeur ajoutée locale",
       "Agriculture biologique et durable",
     ],
-    description: "Transformation locale pour répondre à une demande croissante domestique et continentale. Amélioration de la valeur ajoutée dans les filières agricoles.",
+    description: "Transformation locale pour répondre à une demande croissante domestique et continentale.",
+    image: sectorAgriculture,
     gradient: "from-green-500 to-emerald-600",
   },
   {
@@ -21,7 +28,8 @@ const sectors = [
       "35% des réserves mondiales de Manganèse",
       "25% des réserves mondiales de Diamant",
     ],
-    description: "Potentiel de doubler la capacité électrique d'ici 2030 grâce à la valorisation du gaz. Développement d'un mix énergétique durable.",
+    description: "Potentiel de doubler la capacité électrique d'ici 2030 grâce à la valorisation du gaz.",
+    image: sectorEnergy,
     gradient: "from-amber-500 to-orange-600",
   },
   {
@@ -32,7 +40,8 @@ const sectors = [
       "Corridors routiers et ferroviaires",
       "Infrastructures portuaires stratégiques",
     ],
-    description: "Position géographique stratégique connectant toutes les régions africaines. Opportunités majeures pour le transport et les infrastructures.",
+    description: "Position géographique stratégique connectant toutes les régions africaines.",
+    image: sectorTransport,
     gradient: "from-blue-500 to-indigo-600",
   },
   {
@@ -43,14 +52,15 @@ const sectors = [
       "Inclusion digitale",
       "E-commerce et paiements numériques",
     ],
-    description: "Opportunités d'investissement dans les technologies de l'information. Services, paiements et commerce électronique facilités.",
+    description: "Opportunités d'investissement dans les technologies de l'information.",
+    image: sectorDigital,
     gradient: "from-violet-500 to-purple-600",
   },
 ];
 
 export function SectorsSection() {
   return (
-    <section id="sectors" className="section-padding bg-background relative overflow-hidden">
+    <section id="sectors" className="py-24 md:py-32 bg-background relative overflow-hidden">
       {/* Decorative Elements */}
       <div className="absolute top-0 left-0 w-96 h-96 bg-gold/5 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2" />
       <div className="absolute bottom-0 right-0 w-96 h-96 bg-forest/5 rounded-full blur-3xl translate-x-1/2 translate-y-1/2" />
@@ -86,47 +96,57 @@ export function SectorsSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.1 * index }}
-              className="sector-card group"
+              className="group relative overflow-hidden rounded-3xl bg-card shadow-lg hover:shadow-xl transition-all duration-500"
             >
-              {/* Icon */}
-              <div className="sector-card-icon">
-                <sector.icon className="w-8 h-8 text-navy" />
+              {/* Background Image */}
+              <div className="absolute inset-0">
+                <img
+                  src={sector.image}
+                  alt={sector.title}
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-navy via-navy/80 to-navy/40" />
               </div>
 
-              {/* Title */}
-              <h3 className="text-xl md:text-2xl font-montserrat font-bold text-foreground mb-4 group-hover:text-forest transition-colors">
-                {sector.title}
-              </h3>
+              {/* Content */}
+              <div className="relative p-8 min-h-[400px] flex flex-col justify-end">
+                {/* Icon */}
+                <div className="sector-card-icon mb-6">
+                  <sector.icon className="w-8 h-8 text-navy" />
+                </div>
 
-              {/* Description */}
-              <p className="text-muted-foreground font-inter mb-6">
-                {sector.description}
-              </p>
+                {/* Title */}
+                <h3 className="text-xl md:text-2xl font-montserrat font-bold text-primary-foreground mb-3">
+                  {sector.title}
+                </h3>
 
-              {/* Highlights */}
-              <ul className="space-y-3 mb-6">
-                {sector.highlights.map((highlight) => (
-                  <li
-                    key={highlight}
-                    className="flex items-center gap-3 text-sm font-inter text-foreground"
-                  >
-                    <span className="w-2 h-2 rounded-full bg-gold" />
-                    {highlight}
-                  </li>
-                ))}
-              </ul>
+                {/* Description */}
+                <p className="text-primary-foreground/80 font-inter mb-5 text-sm">
+                  {sector.description}
+                </p>
 
-              {/* CTA */}
-              <a
-                href="#"
-                className="inline-flex items-center gap-2 text-forest font-montserrat font-semibold text-sm group-hover:text-gold transition-colors"
-              >
-                En savoir plus
-                <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-              </a>
+                {/* Highlights */}
+                <ul className="space-y-2 mb-6">
+                  {sector.highlights.map((highlight) => (
+                    <li
+                      key={highlight}
+                      className="flex items-center gap-3 text-sm font-inter text-primary-foreground/90"
+                    >
+                      <span className="w-2 h-2 rounded-full bg-gold flex-shrink-0" />
+                      {highlight}
+                    </li>
+                  ))}
+                </ul>
 
-              {/* Hover Gradient Overlay */}
-              <div className={`absolute inset-0 bg-gradient-to-br ${sector.gradient} opacity-0 group-hover:opacity-5 transition-opacity duration-500 rounded-3xl`} />
+                {/* CTA */}
+                <a
+                  href="#"
+                  className="inline-flex items-center gap-2 text-gold font-montserrat font-semibold text-sm group-hover:gap-3 transition-all"
+                >
+                  En savoir plus
+                  <ChevronRight className="w-4 h-4" />
+                </a>
+              </div>
             </motion.div>
           ))}
         </div>

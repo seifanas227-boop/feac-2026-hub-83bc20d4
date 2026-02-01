@@ -111,7 +111,7 @@ export function StatsSection() {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section id="stats" className="section-padding bg-muted relative overflow-hidden">
+    <section id="stats" className="py-24 md:py-32 bg-muted relative overflow-hidden">
       {/* Decorative Background */}
       <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-gold/5 to-transparent" />
       
