@@ -50,7 +50,7 @@ const attendees = [
 
 export function EventHighlightsSection() {
   return (
-    <section className="section-padding bg-muted relative overflow-hidden">
+    <section className="py-24 md:py-32 bg-muted relative overflow-hidden">
       {/* Decorative Elements */}
       <div className="absolute top-0 left-0 w-64 h-64 bg-gold/5 rounded-full blur-3xl" />
       <div className="absolute bottom-0 right-0 w-64 h-64 bg-forest/5 rounded-full blur-3xl" />

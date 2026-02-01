@@ -26,7 +26,7 @@ const features = [
 
 export function VisionSection() {
   return (
-    <section id="vision" className="section-padding bg-forest-gradient relative overflow-hidden">
+    <section id="vision" className="py-24 md:py-32 bg-forest-gradient relative overflow-hidden">
       {/* Decorative Pattern */}
       <div className="absolute inset-0 opacity-5">
         <div className="absolute top-0 left-0 w-full h-full" style={{
