@@ -1,170 +1,209 @@
 import { motion } from "framer-motion";
-import { Users, Building2, Banknote, Newspaper, Presentation, Handshake, GraduationCap, Rocket } from "lucide-react";
-import panelImage from "@/assets/panel-discussion.png";
+import { 
+  Presentation, 
+  Handshake, 
+  Rocket, 
+  GraduationCap,
+  Building2,
+  Banknote,
+  Users,
+  Newspaper,
+  ArrowRight
+} from "lucide-react";
 
 const activities = [
   {
     icon: Presentation,
-    title: "Conférences de Haut Niveau",
-    description: "Analyses prospectives et décisions concrètes",
+    title: "Conférences",
+    description: "Analyses prospectives par des experts de haut niveau",
+    color: "gold",
   },
   {
     icon: Handshake,
-    title: "Rencontres B2B",
-    description: "Networking stratégique avec investisseurs",
+    title: "B2B Meetings",
+    description: "Networking stratégique avec investisseurs et partenaires",
+    color: "forest",
   },
   {
     icon: Rocket,
-    title: "Pitchs de Projets",
+    title: "Pitch Sessions",
     description: "Projets innovants et opportunités de financement",
+    color: "navy",
   },
   {
     icon: GraduationCap,
-    title: "Coaching Entrepreneurs",
-    description: "Formation pour jeunes entrepreneurs",
+    title: "Masterclasses",
+    description: "Formation intensive pour entrepreneurs",
+    color: "gold",
   },
 ];
 
-const attendees = [
-  {
-    icon: Building2,
-    label: "Institutions Publiques",
-    description: "Ministères et agences gouvernementales",
-  },
-  {
-    icon: Banknote,
-    label: "Partenaires Financiers",
-    description: "BAD, Banque Mondiale, BDEAC",
-  },
-  {
-    icon: Users,
-    label: "Banques d'Investissement",
-    description: "Acteurs financiers régionaux et internationaux",
-  },
-  {
-    icon: Newspaper,
-    label: "Médias Économiques",
-    description: "Couverture médiatique continentale",
-  },
+const participants = [
+  { icon: Building2, label: "Institutions", count: "50+" },
+  { icon: Banknote, label: "Investisseurs", count: "80+" },
+  { icon: Users, label: "Entrepreneurs", count: "500+" },
+  { icon: Newspaper, label: "Médias", count: "30+" },
 ];
 
 export function EventHighlightsSection() {
   return (
-    <section className="py-24 md:py-32 bg-muted relative overflow-hidden">
-      {/* Decorative Elements */}
-      <div className="absolute top-0 left-0 w-64 h-64 bg-gold/5 rounded-full blur-3xl" />
-      <div className="absolute bottom-0 right-0 w-64 h-64 bg-forest/5 rounded-full blur-3xl" />
+    <section className="py-24 md:py-32 bg-background relative overflow-hidden">
+      {/* Background Grid Pattern */}
+      <div className="absolute inset-0 opacity-[0.02]">
+        <div 
+          className="absolute inset-0" 
+          style={{
+            backgroundImage: `linear-gradient(hsl(var(--foreground)) 1px, transparent 1px), linear-gradient(90deg, hsl(var(--foreground)) 1px, transparent 1px)`,
+            backgroundSize: '60px 60px'
+          }} 
+        />
+      </div>
 
       <div className="container-custom relative">
-        {/* Section Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-16"
-        >
-          <span className="inline-block px-4 py-2 rounded-full bg-forest/10 text-forest font-montserrat font-semibold text-sm mb-4">
-            TEMPS FORTS
-          </span>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-montserrat font-black text-foreground mb-4">
-            Activités &
-            <br />
-            <span className="text-gradient-gold">Participants</span>
-          </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto font-inter">
-            Un programme riche en échanges, analyses et opportunités d'affaires pour tous les acteurs économiques.
-          </p>
-        </motion.div>
+        {/* Main Grid Layout */}
+        <div className="grid lg:grid-cols-12 gap-8 lg:gap-12">
+          
+          {/* Left Column - Activities */}
+          <div className="lg:col-span-7">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="mb-10"
+            >
+              <h2 className="text-4xl md:text-5xl lg:text-6xl font-montserrat font-black text-foreground tracking-tight leading-none">
+                Programme
+                <br />
+                <span className="text-gradient-gold">& Activités</span>
+              </h2>
+            </motion.div>
 
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
-          {/* Left - Image */}
-          <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="relative"
-          >
-            <div className="relative rounded-3xl overflow-hidden shadow-2xl">
-              <img
-                src={panelImage}
-                alt="Panel de discussion au Forum"
-                className="w-full h-auto object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-navy/60 to-transparent" />
-              <div className="absolute bottom-6 left-6 right-6">
-                <p className="text-primary-foreground font-montserrat font-bold text-lg">
-                  Éditions Précédentes
-                </p>
-                <p className="text-primary-foreground/80 font-inter text-sm">
-                  Des rencontres de haut niveau pour l'avenir économique de l'Afrique centrale
-                </p>
-              </div>
-            </div>
-          </motion.div>
-
-          {/* Right - Activities */}
-          <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-          >
-            <h3 className="text-2xl font-montserrat font-bold text-foreground mb-6">
-              Au Programme
-            </h3>
-            <div className="grid sm:grid-cols-2 gap-4 mb-8">
+            {/* Activity Cards - 2x2 Grid */}
+            <div className="grid sm:grid-cols-2 gap-4">
               {activities.map((activity, index) => (
                 <motion.div
                   key={activity.title}
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ duration: 0.4, delay: 0.1 * index }}
-                  className="p-4 rounded-xl bg-card border border-border hover:border-gold/30 transition-all duration-300"
+                  transition={{ duration: 0.5, delay: 0.1 * index }}
+                  className="group relative"
                 >
-                  <div className="w-10 h-10 rounded-lg bg-gold/10 flex items-center justify-center mb-3">
-                    <activity.icon className="w-5 h-5 text-gold" />
-                  </div>
-                  <h4 className="font-montserrat font-bold text-foreground text-sm mb-1">
-                    {activity.title}
-                  </h4>
-                  <p className="text-xs text-muted-foreground font-inter">
-                    {activity.description}
-                  </p>
-                </motion.div>
-              ))}
-            </div>
+                  <div className={`
+                    relative p-6 rounded-2xl border transition-all duration-500 h-full
+                    ${activity.color === 'gold' 
+                      ? 'bg-gold/5 border-gold/20 hover:bg-gold/10 hover:border-gold/40' 
+                      : activity.color === 'forest'
+                      ? 'bg-forest/5 border-forest/20 hover:bg-forest/10 hover:border-forest/40'
+                      : 'bg-navy/5 border-navy/20 hover:bg-navy/10 hover:border-navy/40'
+                    }
+                  `}>
+                    {/* Icon */}
+                    <div className={`
+                      w-14 h-14 rounded-xl flex items-center justify-center mb-4 transition-transform duration-300 group-hover:scale-110
+                      ${activity.color === 'gold' 
+                        ? 'bg-gold text-navy' 
+                        : activity.color === 'forest'
+                        ? 'bg-forest text-primary-foreground'
+                        : 'bg-navy text-primary-foreground'
+                      }
+                    `}>
+                      <activity.icon className="w-7 h-7" />
+                    </div>
 
-            <h3 className="text-2xl font-montserrat font-bold text-foreground mb-6">
-              Qui Participe ?
-            </h3>
-            <div className="space-y-3">
-              {attendees.map((attendee, index) => (
-                <motion.div
-                  key={attendee.label}
-                  initial={{ opacity: 0, x: 20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.4, delay: 0.1 * index }}
-                  className="flex items-center gap-4 p-4 rounded-xl bg-forest/5 border border-forest/10"
-                >
-                  <div className="w-12 h-12 rounded-xl bg-forest flex items-center justify-center flex-shrink-0">
-                    <attendee.icon className="w-6 h-6 text-primary-foreground" />
-                  </div>
-                  <div>
-                    <h4 className="font-montserrat font-bold text-foreground text-sm">
-                      {attendee.label}
-                    </h4>
-                    <p className="text-xs text-muted-foreground font-inter">
-                      {attendee.description}
+                    {/* Content */}
+                    <h3 className="text-xl font-montserrat font-bold text-foreground mb-2">
+                      {activity.title}
+                    </h3>
+                    <p className="text-sm text-muted-foreground font-inter leading-relaxed">
+                      {activity.description}
                     </p>
+
+                    {/* Arrow indicator */}
+                    <div className="absolute bottom-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity">
+                      <ArrowRight className={`w-5 h-5 ${
+                        activity.color === 'gold' ? 'text-gold' : 
+                        activity.color === 'forest' ? 'text-forest' : 'text-navy'
+                      }`} />
+                    </div>
                   </div>
                 </motion.div>
               ))}
             </div>
-          </motion.div>
+          </div>
+
+          {/* Right Column - Participants */}
+          <div className="lg:col-span-5">
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="sticky top-24"
+            >
+              {/* Participants Header */}
+              <div className="mb-8">
+                <span className="inline-block px-3 py-1.5 rounded-full bg-forest/10 text-forest font-montserrat font-semibold text-xs mb-4">
+                  QUI PARTICIPE ?
+                </span>
+                <h3 className="text-2xl md:text-3xl font-montserrat font-bold text-foreground">
+                  Un écosystème<br />complet
+                </h3>
+              </div>
+
+              {/* Participant Stats */}
+              <div className="space-y-4 mb-8">
+                {participants.map((participant, index) => (
+                  <motion.div
+                    key={participant.label}
+                    initial={{ opacity: 0, x: 20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.4, delay: 0.3 + 0.1 * index }}
+                    className="flex items-center gap-4 p-4 rounded-xl bg-muted border border-border hover:border-gold/30 transition-all duration-300 group"
+                  >
+                    <div className="w-12 h-12 rounded-xl bg-background border border-border flex items-center justify-center flex-shrink-0 group-hover:border-gold/50 transition-colors">
+                      <participant.icon className="w-5 h-5 text-foreground" />
+                    </div>
+                    <div className="flex-1">
+                      <h4 className="font-montserrat font-bold text-foreground text-sm">
+                        {participant.label}
+                      </h4>
+                    </div>
+                    <div className="text-right">
+                      <span className="text-2xl font-montserrat font-black text-gradient-gold">
+                        {participant.count}
+                      </span>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+
+              {/* CTA Card */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.6 }}
+                className="p-6 rounded-2xl bg-navy text-primary-foreground"
+              >
+                <h4 className="font-montserrat font-bold text-lg mb-2">
+                  Rejoignez-nous
+                </h4>
+                <p className="text-primary-foreground/80 text-sm font-inter mb-4">
+                  3 jours d'échanges, de networking et d'opportunités business.
+                </p>
+                <a 
+                  href="#register"
+                  className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-gold text-navy font-montserrat font-semibold text-sm hover:bg-gold/90 transition-colors"
+                >
+                  S'inscrire maintenant
+                  <ArrowRight className="w-4 h-4" />
+                </a>
+              </motion.div>
+            </motion.div>
+          </div>
         </div>
       </div>
     </section>
