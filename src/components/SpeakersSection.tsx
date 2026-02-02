@@ -127,70 +127,42 @@ export function SpeakersSection() {
           className="flex gap-4 overflow-x-auto pb-8 scrollbar-hide snap-x snap-mandatory -mx-4 px-4 md:-mx-0 md:px-0"
           style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
         >
-          {speakers.map((speaker, index) => {
-            // Staggered heights for visual interest
-            const heightClass = index % 2 === 0 
-              ? (index === 0 ? "h-72" : index === 2 ? "h-96" : "h-80")
-              : (index === 1 ? "h-80" : index === 3 ? "h-72" : "h-88");
-            
-            return (
-              <motion.div
-                key={speaker.name}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: 0.08 * index }}
-                className="flex-shrink-0 snap-start group cursor-pointer"
-                onMouseEnter={() => setActiveIndex(index)}
-                style={{ width: index === activeIndex ? '280px' : '140px' }}
-              >
-                <div 
-                  className={`relative w-full rounded-2xl overflow-hidden transition-all duration-500 ${
-                    index === activeIndex ? 'h-96' : heightClass
-                  }`}
-                >
-                  {/* Image */}
-                  <img
-                    src={speaker.image}
-                    alt={speaker.name}
-                    className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
-                  />
+          {speakers.map((speaker, index) => (
+            <motion.div
+              key={speaker.name}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.08 * index }}
+              className="flex-shrink-0 snap-start group cursor-pointer w-56"
+              onMouseEnter={() => setActiveIndex(index)}
+            >
+              <div className="relative w-full h-72 rounded-2xl overflow-hidden">
+                {/* Image */}
+                <img
+                  src={speaker.image}
+                  alt={speaker.name}
+                  className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
+                />
                   
-                  {/* Gradient Overlay */}
-                  <div className={`absolute inset-0 transition-opacity duration-500 ${
-                    index === activeIndex 
-                      ? 'bg-gradient-to-t from-navy via-navy/40 to-transparent' 
-                      : 'bg-gradient-to-t from-navy/60 to-transparent'
-                  }`} />
+                {/* Gradient Overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-navy via-navy/40 to-transparent" />
 
-                  {/* Content - Only visible on active/hovered card */}
-                  <div className={`absolute bottom-0 left-0 right-0 p-5 transition-all duration-500 ${
-                    index === activeIndex ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
-                  }`}>
-                    <span className="inline-block px-2 py-1 rounded bg-gold/90 text-navy text-xs font-montserrat font-bold mb-2">
-                      {speaker.role}
-                    </span>
-                    <h3 className="text-lg font-montserrat font-bold text-primary-foreground leading-tight">
-                      {speaker.name}
-                    </h3>
-                    <p className="text-sm text-primary-foreground/70 font-inter mt-1">
-                      {speaker.title} · {speaker.country}
-                    </p>
-                  </div>
-
-                  {/* Minimal info for non-active cards */}
-                  <div className={`absolute bottom-4 left-0 right-0 px-3 transition-all duration-500 ${
-                    index === activeIndex ? 'opacity-0' : 'opacity-100'
-                  }`}>
-                    <p className="text-xs font-montserrat font-semibold text-primary-foreground text-center leading-tight" 
-                       style={{ writingMode: 'vertical-rl', textOrientation: 'mixed', transform: 'rotate(180deg)', margin: '0 auto' }}>
-                      {speaker.name.split(' ')[0]}
-                    </p>
-                  </div>
+                {/* Content */}
+                <div className="absolute bottom-0 left-0 right-0 p-4">
+                  <span className="inline-block px-2 py-1 rounded bg-gold/90 text-navy text-xs font-montserrat font-bold mb-2">
+                    {speaker.role}
+                  </span>
+                  <h3 className="text-base font-montserrat font-bold text-primary-foreground leading-tight">
+                    {speaker.name}
+                  </h3>
+                  <p className="text-xs text-primary-foreground/70 font-inter mt-1">
+                    {speaker.title}
+                  </p>
                 </div>
-              </motion.div>
-            );
-          })}
+              </div>
+            </motion.div>
+          ))}
         </div>
 
         {/* Bottom Info Bar */}
