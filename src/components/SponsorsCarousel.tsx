@@ -1,16 +1,22 @@
 import { motion } from "framer-motion";
 
+// Import sponsor logos
+import logoBad from "@/assets/logo-bad.png";
+import logoBdeac from "@/assets/logo-bdeac.png";
+import logoCemac from "@/assets/logo-cemac.png";
+import logoCeeac from "@/assets/logo-ceeac.png";
+import logoWorldbank from "@/assets/logo-worldbank.png";
+
 const sponsors = [
-  { name: "BAD", fullName: "Banque Africaine de Développement" },
-  { name: "BDEAC", fullName: "Banque de Développement des États de l'Afrique Centrale" },
-  { name: "CEMAC", fullName: "Communauté Économique et Monétaire de l'Afrique Centrale" },
-  { name: "CEEAC", fullName: "Communauté Économique des États de l'Afrique Centrale" },
-  { name: "World Bank", fullName: "Banque Mondiale" },
-  { name: "AFD", fullName: "Agence Française de Développement" },
-  { name: "IFC", fullName: "Société Financière Internationale" },
-  { name: "MINEPAT", fullName: "Ministère de l'Économie" },
-  { name: "MINPMEESA", fullName: "Ministère des PME" },
-  { name: "GICAM", fullName: "Groupement Inter-patronal du Cameroun" },
+  { name: "BAD", fullName: "Banque Africaine de Développement", logo: logoBad },
+  { name: "BDEAC", fullName: "Banque de Développement des États de l'Afrique Centrale", logo: logoBdeac },
+  { name: "CEMAC", fullName: "Communauté Économique et Monétaire de l'Afrique Centrale", logo: logoCemac },
+  { name: "CEEAC", fullName: "Communauté Économique des États de l'Afrique Centrale", logo: logoCeeac },
+  { name: "World Bank", fullName: "Banque Mondiale", logo: logoWorldbank },
+  { name: "AFD", fullName: "Agence Française de Développement", logo: null },
+  { name: "IFC", fullName: "Société Financière Internationale", logo: null },
+  { name: "MINEPAT", fullName: "Ministère de l'Économie", logo: null },
+  { name: "GICAM", fullName: "Groupement Inter-patronal du Cameroun", logo: null },
 ];
 
 // Duplicate for seamless loop
@@ -41,18 +47,18 @@ export function SponsorsCarousel() {
         <div className="absolute left-0 top-0 bottom-0 w-32 md:w-48 bg-gradient-to-r from-background to-transparent z-10 pointer-events-none" />
         <div className="absolute right-0 top-0 bottom-0 w-32 md:w-48 bg-gradient-to-l from-background to-transparent z-10 pointer-events-none" />
 
-        {/* Scrolling Track */}
+        {/* First Row - Scrolling Left */}
         <div className="flex overflow-hidden">
           <motion.div
-            className="flex gap-8 md:gap-12"
+            className="flex gap-6 md:gap-8"
             animate={{
-              x: [0, -50 * sponsors.length * 16],
+              x: [0, -200 * sponsors.length],
             }}
             transition={{
               x: {
                 repeat: Infinity,
                 repeatType: "loop",
-                duration: 30,
+                duration: 40,
                 ease: "linear",
               },
             }}
@@ -62,51 +68,67 @@ export function SponsorsCarousel() {
                 key={`${sponsor.name}-${index}`}
                 className="flex-shrink-0 group"
               >
-                <div className="w-40 md:w-48 h-20 md:h-24 rounded-xl bg-card border border-border flex items-center justify-center px-4 transition-all duration-300 group-hover:border-gold/50 group-hover:shadow-lg group-hover:scale-105">
-                  <div className="text-center">
-                    <p className="font-montserrat font-bold text-foreground text-sm md:text-base group-hover:text-gold transition-colors">
-                      {sponsor.name}
-                    </p>
-                    <p className="text-[10px] md:text-xs text-muted-foreground font-inter mt-1 line-clamp-1">
-                      {sponsor.fullName}
-                    </p>
-                  </div>
+                <div className="w-44 md:w-52 h-24 md:h-28 rounded-xl bg-card border border-border flex items-center justify-center p-4 transition-all duration-300 group-hover:border-gold/50 group-hover:shadow-lg group-hover:scale-105">
+                  {sponsor.logo ? (
+                    <img 
+                      src={sponsor.logo} 
+                      alt={sponsor.fullName}
+                      className="max-w-full max-h-full object-contain filter grayscale group-hover:grayscale-0 transition-all duration-300"
+                    />
+                  ) : (
+                    <div className="text-center">
+                      <p className="font-montserrat font-bold text-foreground text-sm md:text-base group-hover:text-gold transition-colors">
+                        {sponsor.name}
+                      </p>
+                      <p className="text-[10px] md:text-xs text-muted-foreground font-inter mt-1 line-clamp-1">
+                        {sponsor.fullName}
+                      </p>
+                    </div>
+                  )}
                 </div>
               </div>
             ))}
           </motion.div>
         </div>
 
-        {/* Second Row - Reverse Direction */}
+        {/* Second Row - Scrolling Right */}
         <div className="flex overflow-hidden mt-6">
           <motion.div
-            className="flex gap-8 md:gap-12"
+            className="flex gap-6 md:gap-8"
             animate={{
-              x: [-50 * sponsors.length * 16, 0],
+              x: [-200 * sponsors.length, 0],
             }}
             transition={{
               x: {
                 repeat: Infinity,
                 repeatType: "loop",
-                duration: 35,
+                duration: 45,
                 ease: "linear",
               },
             }}
           >
-            {duplicatedSponsors.map((sponsor, index) => (
+            {[...duplicatedSponsors].reverse().map((sponsor, index) => (
               <div
                 key={`reverse-${sponsor.name}-${index}`}
                 className="flex-shrink-0 group"
               >
-                <div className="w-40 md:w-48 h-20 md:h-24 rounded-xl bg-muted border border-border flex items-center justify-center px-4 transition-all duration-300 group-hover:border-forest/50 group-hover:shadow-lg group-hover:scale-105">
-                  <div className="text-center">
-                    <p className="font-montserrat font-bold text-foreground text-sm md:text-base group-hover:text-forest transition-colors">
-                      {sponsor.name}
-                    </p>
-                    <p className="text-[10px] md:text-xs text-muted-foreground font-inter mt-1 line-clamp-1">
-                      {sponsor.fullName}
-                    </p>
-                  </div>
+                <div className="w-44 md:w-52 h-24 md:h-28 rounded-xl bg-muted border border-border flex items-center justify-center p-4 transition-all duration-300 group-hover:border-forest/50 group-hover:shadow-lg group-hover:scale-105">
+                  {sponsor.logo ? (
+                    <img 
+                      src={sponsor.logo} 
+                      alt={sponsor.fullName}
+                      className="max-w-full max-h-full object-contain filter grayscale group-hover:grayscale-0 transition-all duration-300"
+                    />
+                  ) : (
+                    <div className="text-center">
+                      <p className="font-montserrat font-bold text-foreground text-sm md:text-base group-hover:text-forest transition-colors">
+                        {sponsor.name}
+                      </p>
+                      <p className="text-[10px] md:text-xs text-muted-foreground font-inter mt-1 line-clamp-1">
+                        {sponsor.fullName}
+                      </p>
+                    </div>
+                  )}
                 </div>
               </div>
             ))}
