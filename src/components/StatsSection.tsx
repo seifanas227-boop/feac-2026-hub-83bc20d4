@@ -8,7 +8,7 @@ const stats = [
     value: 200,
     suffix: "M",
     label: "Habitants",
-    description: "Population de l'Afrique centrale",
+    description: "Près de 200 millions d'habitants",
     color: "gold",
   },
   {
@@ -16,15 +16,15 @@ const stats = [
     value: 5,
     suffix: "%",
     label: "Croissance",
-    description: "Moyenne sur les 5 dernières années",
+    description: "En moyenne sur les 5 dernières années",
     color: "forest",
   },
   {
     icon: DollarSign,
-    value: 523,
+    value: 500,
     suffix: "Mds $",
-    label: "PIB (PPA)",
-    description: "Produit Intérieur Brut régional",
+    label: "PIB",
+    description: "PIB avoisinant 500 milliards de dollars",
     color: "navy",
   },
   {
@@ -32,7 +32,7 @@ const stats = [
     value: 6.67,
     suffix: "M km²",
     label: "Superficie",
-    description: "Un territoire vaste et riche",
+    description: "6,67 millions de kilomètres carrés",
     color: "gold",
     isDecimal: true,
   },
@@ -133,7 +133,7 @@ export function StatsSection() {
             <span className="text-gradient-gold">des Entreprises</span>
           </h2>
           <p className="text-lg text-muted-foreground max-w-3xl mx-auto font-inter">
-            La ZLECAF ouvre une ère nouvelle avec un accès à un marché continental de <strong>1,3 milliard de consommateurs</strong> et un <strong>PIB de 3 000 milliards de dollars</strong>.
+            La ZLECAF ouvre une ère nouvelle. Un marché continental de <strong>1,3 milliard de consommateurs</strong> pour un PIB de plus de <strong>3 000 milliards de dollars</strong>. L'Afrique centrale y contribue avec 6 pays membres et un potentiel immense.
           </p>
         </motion.div>
 

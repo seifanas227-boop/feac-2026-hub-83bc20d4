@@ -14,35 +14,35 @@ import {
 const activities = [
   {
     icon: Presentation,
-    title: "Conférences",
-    description: "Analyses prospectives par des experts de haut niveau",
+    title: "Expositions",
+    description: "Expositions économiques et sectorielles",
     color: "gold",
   },
   {
     icon: Handshake,
-    title: "B2B Meetings",
-    description: "Networking stratégique avec investisseurs et partenaires",
+    title: "Conférences-débats",
+    description: "Conférences-débats de haut niveau",
     color: "forest",
   },
   {
     icon: Rocket,
-    title: "Pitch Sessions",
-    description: "Projets innovants et opportunités de financement",
+    title: "B2B & Networking",
+    description: "Rencontres B2B et networking stratégique",
     color: "navy",
   },
   {
     icon: GraduationCap,
-    title: "Masterclasses",
-    description: "Formation intensive pour entrepreneurs",
+    title: "Pitchs & Coaching",
+    description: "Pitchs de projets innovants et coaching entrepreneurs",
     color: "gold",
   },
 ];
 
 const participants = [
-  { icon: Building2, label: "Institutions", count: "50+" },
-  { icon: Banknote, label: "Investisseurs", count: "80+" },
-  { icon: Users, label: "Entrepreneurs", count: "500+" },
-  { icon: Newspaper, label: "Médias", count: "30+" },
+  { icon: Building2, label: "Institutions publiques", count: "50+" },
+  { icon: Banknote, label: "Bailleurs de fonds", count: "80+" },
+  { icon: Users, label: "Chambres consulaires", count: "200+" },
+  { icon: Newspaper, label: "Médias économiques", count: "30+" },
 ];
 
 export function EventHighlightsSection() {
