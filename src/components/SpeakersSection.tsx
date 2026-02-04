@@ -26,7 +26,7 @@ const speakers: Speaker[] = [
   {
     name: "Alamine Ousmane Mey",
     role: "Parrain du Forum",
-    title: "Ministre de l'Économie",
+    title: "Ministre de l'Économie, de la Planification et de l'Aménagement du Territoire",
     country: "Cameroun",
     image: speakerAlamine,
     category: "intervenants",
@@ -34,7 +34,7 @@ const speakers: Speaker[] = [
   {
     name: "Achille Bassilekin III",
     role: "Invité d'honneur",
-    title: "Ministre des PME",
+    title: "Ministre des PME, de l'Économie Sociale et de l'Artisanat",
     country: "Cameroun",
     image: speakerAchille,
     category: "intervenants",
@@ -51,7 +51,7 @@ const speakers: Speaker[] = [
   {
     name: "Jean Baptiste Fouda",
     role: "Président du Forum",
-    title: "Président FEAC",
+    title: "Président du Forum Économique Afrique Centrale",
     country: "Cameroun",
     image: speakerFouda,
     category: "comite",
@@ -59,7 +59,7 @@ const speakers: Speaker[] = [
   {
     name: "Debora Ngo Tonye",
     role: "Commissaire Général",
-    title: "Commissaire général",
+    title: "Commissaire général du Forum - DG Audace",
     country: "Cameroun",
     image: speakerDebora,
     category: "comite",
@@ -67,33 +67,33 @@ const speakers: Speaker[] = [
   {
     name: "Dr Maximilien Emagna",
     role: "Comité Scientifique",
-    title: "DG Audace",
+    title: "Président du comité scientifique - Fondateur PME Afrique Centrale",
     country: "Cameroun",
     image: speakerEmagna,
     category: "comite",
   },
-  // Ambassadeurs (placeholder - same images for demo)
+  // Ambassadeurs / Points Focaux
   {
-    name: "Ambassadeur 1",
-    role: "Ambassadeur FEAC",
-    title: "Représentant Officiel",
-    country: "Gabon",
+    name: "Freddy Zanga",
+    role: "Point Focal Europe",
+    title: "Consultant PDG du groupe CICR",
+    country: "Europe",
     image: speakerAlamine,
     category: "ambassadeurs",
   },
   {
-    name: "Ambassadeur 2",
-    role: "Ambassadeur FEAC",
-    title: "Représentant Officiel",
-    country: "Congo",
+    name: "Raymond Kashiba",
+    role: "Point Focal Canada",
+    title: "PDG du CCRCC - Fondateur Forum Congo-Canada",
+    country: "Canada",
     image: speakerAchille,
     category: "ambassadeurs",
   },
   {
-    name: "Ambassadeur 3",
-    role: "Ambassadeur FEAC",
-    title: "Représentant Officiel",
-    country: "Tchad",
+    name: "Ferjani Jamel",
+    role: "Point Focal Congo & Maghreb",
+    title: "DG Eva Événement et communication INC",
+    country: "Congo Brazzaville",
     image: speakerDieudonne,
     category: "ambassadeurs",
   },
@@ -102,7 +102,7 @@ const speakers: Speaker[] = [
 const categories = [
   { id: "intervenants" as Category, label: "Intervenants", subtitle: "Leaders & Décideurs" },
   { id: "comite" as Category, label: "Comité d'organisation", subtitle: "Équipe organisatrice" },
-  { id: "ambassadeurs" as Category, label: "Ambassadeurs", subtitle: "Représentants officiels" },
+  { id: "ambassadeurs" as Category, label: "Points Focaux", subtitle: "Représentants régionaux" },
 ];
 
 export function SpeakersSection() {
@@ -265,7 +265,7 @@ export function SpeakersSection() {
           <p className="text-sm text-muted-foreground font-inter">
             {activeCategory === "intervenants" && "Décideurs politiques, experts économiques et leaders d'opinion réunis pour façonner l'avenir économique de l'Afrique centrale."}
             {activeCategory === "comite" && "L'équipe organisatrice dédiée à la réussite du Forum Économique de l'Afrique Centrale."}
-            {activeCategory === "ambassadeurs" && "Nos ambassadeurs représentent le FEAC à travers les pays de la CEMAC."}
+            {activeCategory === "ambassadeurs" && "Nos points focaux représentent le FEAC à travers l'Europe, le Canada, le Maghreb et l'Afrique."}
           </p>
           <div className="flex items-center gap-2">
             {filteredSpeakers.map((_, i) => (
