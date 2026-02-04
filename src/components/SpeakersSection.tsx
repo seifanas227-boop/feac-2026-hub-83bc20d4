@@ -10,13 +10,26 @@ import speakerFouda from "@/assets/speaker-fouda.jpg";
 import speakerDebora from "@/assets/speaker-debora.jpg";
 import speakerEmagna from "@/assets/speaker-emagna.jpg";
 
-const speakers = [
+type Category = "intervenants" | "comite" | "ambassadeurs";
+
+interface Speaker {
+  name: string;
+  role: string;
+  title: string;
+  country: string;
+  image: string;
+  category: Category;
+}
+
+const speakers: Speaker[] = [
+  // Intervenants
   {
     name: "Alamine Ousmane Mey",
     role: "Parrain du Forum",
     title: "Ministre de l'Économie",
     country: "Cameroun",
     image: speakerAlamine,
+    category: "intervenants",
   },
   {
     name: "Achille Bassilekin III",
@@ -24,6 +37,7 @@ const speakers = [
     title: "Ministre des PME",
     country: "Cameroun",
     image: speakerAchille,
+    category: "intervenants",
   },
   {
     name: "Dieudonné Evou Mekou",
@@ -31,13 +45,16 @@ const speakers = [
     title: "Président de la BDEAC",
     country: "Afrique Centrale",
     image: speakerDieudonne,
+    category: "intervenants",
   },
+  // Comité d'organisation
   {
     name: "Jean Baptiste Fouda",
     role: "Président du Forum",
     title: "Président FEAC",
     country: "Cameroun",
     image: speakerFouda,
+    category: "comite",
   },
   {
     name: "Debora Ngo Tonye",
@@ -45,6 +62,7 @@ const speakers = [
     title: "Commissaire général",
     country: "Cameroun",
     image: speakerDebora,
+    category: "comite",
   },
   {
     name: "Dr Maximilien Emagna",
@@ -52,20 +70,62 @@ const speakers = [
     title: "DG Audace",
     country: "Cameroun",
     image: speakerEmagna,
+    category: "comite",
+  },
+  // Ambassadeurs (placeholder - same images for demo)
+  {
+    name: "Ambassadeur 1",
+    role: "Ambassadeur FEAC",
+    title: "Représentant Officiel",
+    country: "Gabon",
+    image: speakerAlamine,
+    category: "ambassadeurs",
+  },
+  {
+    name: "Ambassadeur 2",
+    role: "Ambassadeur FEAC",
+    title: "Représentant Officiel",
+    country: "Congo",
+    image: speakerAchille,
+    category: "ambassadeurs",
+  },
+  {
+    name: "Ambassadeur 3",
+    role: "Ambassadeur FEAC",
+    title: "Représentant Officiel",
+    country: "Tchad",
+    image: speakerDieudonne,
+    category: "ambassadeurs",
   },
 ];
 
-// Heights for staggered effect (creative portfolio style)
-const heights = ["h-64", "h-80", "h-72", "h-96", "h-68", "h-76"];
+const categories = [
+  { id: "intervenants" as Category, label: "Intervenants", subtitle: "Leaders & Décideurs" },
+  { id: "comite" as Category, label: "Comité d'organisation", subtitle: "Équipe organisatrice" },
+  { id: "ambassadeurs" as Category, label: "Ambassadeurs", subtitle: "Représentants officiels" },
+];
 
 export function SpeakersSection() {
+  const [activeCategory, setActiveCategory] = useState<Category>("intervenants");
   const [activeIndex, setActiveIndex] = useState(0);
   const scrollRef = useRef<HTMLDivElement>(null);
+
+  const filteredSpeakers = speakers.filter((s) => s.category === activeCategory);
+  const currentSubtitle = categories.find((c) => c.id === activeCategory)?.subtitle || "";
 
   const scroll = (direction: "left" | "right") => {
     if (scrollRef.current) {
       const scrollAmount = direction === "left" ? -300 : 300;
       scrollRef.current.scrollBy({ left: scrollAmount, behavior: "smooth" });
+    }
+  };
+
+  const handleCategoryChange = (category: Category) => {
+    setActiveCategory(category);
+    setActiveIndex(0);
+    // Reset scroll position
+    if (scrollRef.current) {
+      scrollRef.current.scrollTo({ left: 0, behavior: "smooth" });
     }
   };
 
@@ -80,32 +140,58 @@ export function SpeakersSection() {
       </div>
 
       <div className="container-custom relative">
-        {/* Header with Navigation */}
-        <div className="flex flex-col md:flex-row md:items-end md:justify-between mb-12 gap-6">
+        {/* Header */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="mb-8"
+        >
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-montserrat font-black text-foreground tracking-tight">
+            Intervenants
+          </h2>
+        </motion.div>
+
+        {/* Category Tabs */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.1 }}
+          className="flex flex-wrap gap-3 mb-8"
+        >
+          {categories.map((cat) => (
+            <button
+              key={cat.id}
+              onClick={() => handleCategoryChange(cat.id)}
+              className={`px-5 py-2.5 rounded-full font-montserrat font-semibold text-sm transition-all duration-300 ${
+                activeCategory === cat.id
+                  ? "bg-gold text-navy shadow-lg shadow-gold/25"
+                  : "bg-background border border-border text-foreground hover:border-gold hover:text-gold"
+              }`}
+            >
+              {cat.label}
+            </button>
+          ))}
+        </motion.div>
+
+        {/* Subtitle and Navigation Row */}
+        <div className="flex flex-col md:flex-row md:items-end md:justify-between mb-8 gap-4">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
+            key={activeCategory}
+            initial={{ opacity: 0, x: -10 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.3 }}
+            className="flex items-center gap-4"
           >
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-montserrat font-black text-foreground tracking-tight">
-              Intervenants
-            </h2>
-            <div className="flex items-center gap-4 mt-2">
-              <span className="text-sm text-muted-foreground font-inter">Leaders & Décideurs</span>
-              <span className="text-muted-foreground">·</span>
-              <span className="text-sm text-muted-foreground font-inter">FEAC 2026</span>
-            </div>
+            <span className="text-sm text-muted-foreground font-inter">{currentSubtitle}</span>
+            <span className="text-muted-foreground">·</span>
+            <span className="text-sm text-muted-foreground font-inter">FEAC 2026</span>
           </motion.div>
 
           {/* Navigation Arrows */}
-          <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="flex items-center gap-3"
-          >
+          <div className="flex items-center gap-3">
             <button
               onClick={() => scroll("left")}
               className="w-12 h-12 rounded-full border border-border bg-background hover:bg-gold hover:border-gold hover:text-navy transition-all duration-300 flex items-center justify-center group"
@@ -118,21 +204,24 @@ export function SpeakersSection() {
             >
               <ChevronRight className="w-5 h-5 group-hover:scale-110 transition-transform" />
             </button>
-          </motion.div>
+          </div>
         </div>
 
         {/* Horizontal Scrolling Gallery */}
-        <div
+        <motion.div
+          key={activeCategory}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.4 }}
           ref={scrollRef}
           className="flex gap-4 overflow-x-auto pb-8 scrollbar-hide snap-x snap-mandatory -mx-4 px-4 md:-mx-0 md:px-0"
           style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
         >
-          {speakers.map((speaker, index) => (
+          {filteredSpeakers.map((speaker, index) => (
             <motion.div
               key={speaker.name}
               initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
+              animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.08 * index }}
               className="flex-shrink-0 snap-start group cursor-pointer w-56"
               onMouseEnter={() => setActiveIndex(index)}
@@ -163,7 +252,7 @@ export function SpeakersSection() {
               </div>
             </motion.div>
           ))}
-        </div>
+        </motion.div>
 
         {/* Bottom Info Bar */}
         <motion.div
@@ -174,10 +263,12 @@ export function SpeakersSection() {
           className="mt-8 pt-8 border-t border-border flex flex-col md:flex-row md:items-center md:justify-between gap-4"
         >
           <p className="text-sm text-muted-foreground font-inter">
-            Décideurs politiques, experts économiques et leaders d'opinion réunis pour façonner l'avenir économique de l'Afrique centrale.
+            {activeCategory === "intervenants" && "Décideurs politiques, experts économiques et leaders d'opinion réunis pour façonner l'avenir économique de l'Afrique centrale."}
+            {activeCategory === "comite" && "L'équipe organisatrice dédiée à la réussite du Forum Économique de l'Afrique Centrale."}
+            {activeCategory === "ambassadeurs" && "Nos ambassadeurs représentent le FEAC à travers les pays de la CEMAC."}
           </p>
           <div className="flex items-center gap-2">
-            {speakers.map((_, i) => (
+            {filteredSpeakers.map((_, i) => (
               <button
                 key={i}
                 onClick={() => setActiveIndex(i)}
