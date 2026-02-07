@@ -196,7 +196,7 @@ export function SpeakersSection() {
         }} />
       </div>
 
-      <div className="container-custom relative space-y-16">
+      <div className="container-custom relative space-y-8">
         {categoriesData.map((category, catIndex) => (
           <motion.div
             key={category.id}
@@ -226,7 +226,7 @@ export function SpeakersSection() {
 
             {/* Divider (except for last category) */}
             {catIndex < categoriesData.length - 1 && (
-              <div className="mt-12 border-b border-border/50" />
+              <div className="mt-6 border-b border-border/50" />
             )}
           </motion.div>
         ))}
