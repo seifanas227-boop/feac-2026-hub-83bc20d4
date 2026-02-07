@@ -48,5 +48,88 @@ export function GallerySection() {
       setSelectedImage(selectedImage === galleryImages.length - 1 ? 0 : selectedImage + 1);
     }
   };
-  return;
+  return (
+    <section id="gallery" className="py-24 md:py-32 bg-muted">
+      <div className="container-custom">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+          className="text-center mb-12"
+        >
+          <h2 className="text-3xl md:text-4xl font-montserrat font-bold text-foreground mb-4">
+            Galerie Photo
+          </h2>
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+            Revivez les moments forts des éditions précédentes du Forum Économique Afrique Centrale
+          </p>
+        </motion.div>
+
+        {/* Gallery Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {galleryImages.map((image, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+              viewport={{ once: true }}
+              className="group relative overflow-hidden rounded-xl cursor-pointer"
+              onClick={() => openLightbox(index)}
+            >
+              <img
+                src={image.src}
+                alt={image.title}
+                className="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-navy/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <div className="absolute bottom-0 left-0 right-0 p-4">
+                  <h3 className="text-white font-montserrat font-semibold text-lg">{image.title}</h3>
+                  <p className="text-white/80 text-sm">{image.description}</p>
+                </div>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+
+      {/* Lightbox Modal */}
+      {selectedImage !== null && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/90" onClick={closeLightbox}>
+          <button
+            onClick={closeLightbox}
+            className="absolute top-4 right-4 p-2 text-white hover:text-gold transition-colors"
+          >
+            <X className="w-8 h-8" />
+          </button>
+          <button
+            onClick={(e) => { e.stopPropagation(); goToPrevious(); }}
+            className="absolute left-4 p-2 text-white hover:text-gold transition-colors"
+          >
+            <ChevronLeft className="w-10 h-10" />
+          </button>
+          <button
+            onClick={(e) => { e.stopPropagation(); goToNext(); }}
+            className="absolute right-4 p-2 text-white hover:text-gold transition-colors"
+          >
+            <ChevronRight className="w-10 h-10" />
+          </button>
+          <div className="max-w-4xl max-h-[80vh] px-12" onClick={(e) => e.stopPropagation()}>
+            <img
+              src={galleryImages[selectedImage].src}
+              alt={galleryImages[selectedImage].title}
+              className="w-full h-full object-contain rounded-lg"
+            />
+            <div className="text-center mt-4">
+              <h3 className="text-white font-montserrat font-semibold text-xl">
+                {galleryImages[selectedImage].title}
+              </h3>
+              <p className="text-white/70">{galleryImages[selectedImage].description}</p>
+            </div>
+          </div>
+        </div>
+      )}
+    </section>
+  );
 }

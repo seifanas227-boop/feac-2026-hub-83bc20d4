@@ -13,7 +13,20 @@ export function HeroSection() {
       <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden">
         {/* Video Background */}
         <div className="absolute inset-0">
-          <video autoPlay loop muted playsInline poster={heroBg} className="w-full h-full object-cover">
+          <video 
+            autoPlay 
+            loop 
+            muted 
+            playsInline 
+            poster={heroBg} 
+            className="w-full h-full object-cover"
+            style={{
+              filter: 'brightness(1.05) contrast(1.02)',
+              willChange: 'transform',
+              backfaceVisibility: 'hidden',
+              transform: 'translateZ(0)',
+            }}
+          >
             <source src={heroVideo} type="video/mp4" />
             {/* Fallback to image if video doesn't load */}
             <img src={heroBg} alt="Port africain au coucher du soleil" className="w-full h-full object-cover" />
